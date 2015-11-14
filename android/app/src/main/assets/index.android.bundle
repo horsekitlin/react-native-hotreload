@@ -1,0 +1,1198 @@
+__DEV__=!1,__BUNDLE_START_TIME__=Date.now(),function(r){function t(r,t){o[r]={factory:t,module:{exports:{}},isInitialized:!1,hasError:!1}}function n(r){var t=o[r];return t&&t.isInitialized?t.module.exports:e(r)}function e(t){if(r.ErrorUtils&&!i){i=!0;var a;try{a=e.apply(this,arguments)}catch(u){r.ErrorUtils.reportFatalError(u)}return i=!1,a}var l=o[t];if(!l){var c='Requiring unknown module "'+t+'"';throw __DEV__&&(c+=". If you are sure the module is there, try restarting the packager."),new Error(c)}if(l.hasError)throw new Error('Requiring module "'+t+'" which threw an exception');try{l.isInitialized=!0,l.factory.call(r,r,n,l.module,l.module.exports)}catch(u){throw l.hasError=!0,l.isInitialized=!1,u}return l.module.exports}var o=Object.create(null),i=!1;r.__d=t,r.require=n}(this),Object.assign=function(r,t){if(__DEV__){if(null==r)throw new TypeError("Object.assign target cannot be null or undefined");if("object"!=typeof r&&"function"!=typeof r)throw new TypeError("In this environment the target of assign MUST be an object.This error is a performance optimization and not spec compliant.")}for(var n=1;n<arguments.length;n++){var e=arguments[n];if(null!=e){if(__DEV__&&"object"!=typeof e&&"function"!=typeof e)throw new TypeError("In this environment the target of assign MUST be an object.This error is a performance optimization and not spec compliant.");for(var o in e){if(__DEV__){var i=Object.prototype.hasOwnProperty;if(!i.call(e,o))throw new TypeError("One of the sources to assign has an enumerable key on the prototype chain. This is an edge case that we do not support. This error is a performance optimization and not spec compliant.")}r[o]=e[o]}}}return r},function(r){"use strict";function t(r){function t(t){return function(){var e=Array.prototype.map.call(arguments,function(r){return n(r,{depth:10})}).join(", ");"'Warning: "===e.slice(0,10)&&t>=o.error&&(t=o.warn),r.nativeLoggingHook(e,t)}}function i(t){if(!Array.isArray(t)){var n=t;t=[];for(var i in n)if(n.hasOwnProperty(i)){var a=n[i];a[e]=i,t.push(a)}}if(0===t.length)return void r.nativeLoggingHook("",o.log);var l=Object.keys(t[0]).sort(),c=[],s=[];l.forEach(function(r,n){s[n]=r.length;for(var e=0;e<t.length;e++){var o=t[e][r].toString();c[e]=c[e]||[],c[e][n]=o,s[n]=Math.max(s[n],o.length)}});for(var f=function(r,t){var n=r.map(function(r,t){var n=u(" ",s[t]-r.length).join("");return r+n});return t=t||" ",n.join(t+"|"+t)},p=s.map(function(r){return u("-",r).join("")}),g=f(p,"-"),d=f(l),h=[d,g],y=0;y<t.length;y++)h.push(f(c[y]));r.nativeLoggingHook("\n"+h.join("\n"),o.log)}var a=r.console;if(r.nativeLoggingHook){var u=function(r,t){return Array.apply(null,Array(t)).map(function(){return r})};r.console={error:t(o.error),info:t(o.info),log:t(o.log),warn:t(o.warn),trace:t(o.trace),table:i},__DEV__&&a&&Object.keys(r.console).forEach(function(t){var n=r.console[t];a[t]&&(r.console[t]=function(){a[t].apply(a,arguments),n.apply(r.console,arguments)})})}}var n=function(){function r(r,n){var o={seen:[],stylize:t};return e(o,r,n.depth)}function t(r,t){return r}function n(r){var t={};return r.forEach(function(r,n){t[r]=!0}),t}function e(r,t,e){var s=o(r,t);if(s)return s;var f=Object.keys(t),p=n(f);if(b(t)&&(f.indexOf("message")>=0||f.indexOf("description")>=0))return i(t);if(0===f.length){if(v(t)){var g=t.name?": "+t.name:"";return r.stylize("[Function"+g+"]","special")}if(h(t))return r.stylize(RegExp.prototype.toString.call(t),"regexp");if(m(t))return r.stylize(Date.prototype.toString.call(t),"date");if(b(t))return i(t)}var d="",y=!1,E=["{","}"];if(c(t)&&(y=!0,E=["[","]"]),v(t)){var _=t.name?": "+t.name:"";d=" [Function"+_+"]"}if(h(t)&&(d=" "+RegExp.prototype.toString.call(t)),m(t)&&(d=" "+Date.prototype.toUTCString.call(t)),b(t)&&(d=" "+i(t)),0===f.length&&(!y||0==t.length))return E[0]+d+E[1];if(0>e)return h(t)?r.stylize(RegExp.prototype.toString.call(t),"regexp"):r.stylize("[Object]","special");r.seen.push(t);var w;return w=y?a(r,t,e,p,f):f.map(function(n){return u(r,t,e,p,n,y)}),r.seen.pop(),l(w,d,E)}function o(r,t){if(d(t))return r.stylize("undefined","undefined");if(g(t)){var n="'"+JSON.stringify(t).replace(/^"|"$/g,"").replace(/'/g,"\\'").replace(/\\"/g,'"')+"'";return r.stylize(n,"string")}return p(t)?r.stylize(""+t,"number"):s(t)?r.stylize(""+t,"boolean"):f(t)?r.stylize("null","null"):void 0}function i(r){return"["+Error.prototype.toString.call(r)+"]"}function a(r,t,n,e,o){for(var i=[],a=0,l=t.length;l>a;++a)_(t,String(a))?i.push(u(r,t,n,e,String(a),!0)):i.push("");return o.forEach(function(o){o.match(/^\d+$/)||i.push(u(r,t,n,e,o,!0))}),i}function u(r,t,n,o,i,a){var u,l,c;if(c=Object.getOwnPropertyDescriptor(t,i)||{value:t[i]},c.get?l=c.set?r.stylize("[Getter/Setter]","special"):r.stylize("[Getter]","special"):c.set&&(l=r.stylize("[Setter]","special")),_(o,i)||(u="["+i+"]"),l||(r.seen.indexOf(c.value)<0?(l=f(n)?e(r,c.value,null):e(r,c.value,n-1),l.indexOf("\n")>-1&&(l=a?l.split("\n").map(function(r){return"  "+r}).join("\n").substr(2):"\n"+l.split("\n").map(function(r){return"   "+r}).join("\n"))):l=r.stylize("[Circular]","special")),d(u)){if(a&&i.match(/^\d+$/))return l;u=JSON.stringify(""+i),u.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)?(u=u.substr(1,u.length-2),u=r.stylize(u,"name")):(u=u.replace(/'/g,"\\'").replace(/\\"/g,'"').replace(/(^"|"$)/g,"'"),u=r.stylize(u,"string"))}return u+": "+l}function l(r,t,n){var e=0,o=r.reduce(function(r,t){return e++,t.indexOf("\n")>=0&&e++,r+t.replace(/\u001b\[\d\d?m/g,"").length+1},0);return o>60?n[0]+(""===t?"":t+"\n ")+" "+r.join(",\n  ")+" "+n[1]:n[0]+t+" "+r.join(", ")+" "+n[1]}function c(r){return Array.isArray(r)}function s(r){return"boolean"==typeof r}function f(r){return null===r}function p(r){return"number"==typeof r}function g(r){return"string"==typeof r}function d(r){return void 0===r}function h(r){return y(r)&&"[object RegExp]"===E(r)}function y(r){return"object"==typeof r&&null!==r}function m(r){return y(r)&&"[object Date]"===E(r)}function b(r){return y(r)&&("[object Error]"===E(r)||r instanceof Error)}function v(r){return"function"==typeof r}function E(r){return Object.prototype.toString.call(r)}function _(r,t){return Object.prototype.hasOwnProperty.call(r,t)}return r}(),e="(index)",o={trace:0,log:1,info:2,warn:3,error:4};"undefined"!=typeof module?module.exports=t:t(r)}(this),function(r){function t(){var t=function(t){r.console.error("Error: \n stack: "+t.stack+"\n line: "+t.line+"\n message: "+t.message,t)};r.ErrorUtils.setGlobalHandler(t)}var n={_inGuard:0,_globalHandler:null,setGlobalHandler:function(r){n._globalHandler=r},reportError:function(r){n._globalHandler&&n._globalHandler(r)},reportFatalError:function(r){n._globalHandler&&n._globalHandler(r,!0)},applyWithGuard:function(r,t,e){try{return n._inGuard++,r.apply(t,e)}catch(o){n.reportError(o)}finally{n._inGuard--}},applyWithGuardIfNeeded:function(r,t,e){return n.inGuard()?r.apply(t,e):void n.applyWithGuard(r,t,e)},inGuard:function(){return n._inGuard},guard:function(r,t,e){function o(){return n.applyWithGuard(r,e||this,arguments,null,t)}return"function"!=typeof r?(console.warn("A function must be passed to ErrorUtils.guard, got ",r),null):(t=t||r.name||"<generated guard>",o)}};r.ErrorUtils=n,t()}(this),String.prototype.startsWith||(String.prototype.startsWith=function(r){"use strict";if(null==this)throw TypeError();var t=String(this),n=arguments.length>1?Number(arguments[1])||0:0,e=Math.min(Math.max(n,0),t.length);return t.indexOf(String(r),n)===e}),String.prototype.endsWith||(String.prototype.endsWith=function(r){"use strict";if(null==this)throw TypeError();var t=String(this),n=t.length,e=String(r),o=arguments.length>1?Number(arguments[1])||0:n,i=Math.min(Math.max(o,0),n),a=i-e.length;return 0>a?!1:t.lastIndexOf(e,a)===a}),String.prototype.contains||(String.prototype.contains=function(r){"use strict";if(null==this)throw TypeError();var t=String(this),n=arguments.length>1?Number(arguments[1])||0:0;return-1!==t.indexOf(String(r),n)}),String.prototype.repeat||(String.prototype.repeat=function(r){"use strict";if(null==this)throw TypeError();var t=String(this);if(r=Number(r)||0,0>r||r===1/0)throw RangeError();if(1===r)return t;for(var n="";r;)1&r&&(n+=t),(r>>=1)&&(t+=t);return n}),function(r){function t(r,t){if(null==this)throw new TypeError("Array.prototype.findIndex called on null or undefined");if("function"!=typeof r)throw new TypeError("predicate must be a function");for(var n=Object(this),e=n.length>>>0,o=0;e>o;o++)if(r.call(t,n[o],o,n))return o;return-1}Array.prototype.findIndex||Object.defineProperty(Array.prototype,"findIndex",{enumerable:!1,writable:!0,configurable:!0,value:t}),Array.prototype.find||Object.defineProperty(Array.prototype,"find",{enumerable:!1,writable:!0,configurable:!0,value:function(n,e){if(null==this)throw new TypeError("Array.prototype.find called on null or undefined");var o=t.call(this,n,e);return-1===o?r:this[o]}})}(),function(r){function t(r){return new Error("You are trying to render the global "+r+" variable as a React element. You probably forgot to require "+r+".")}r.Text={get defaultProps(){throw t("Text")}},r.Image={get defaultProps(){throw t("Image")}},r.document&&(r.document.createElement=null),r.MutationObserver=void 0}(this),__d("krememberIOS/index.android.js",function(r,t,n,e){!function(r){function t(e){if(n[e])return n[e].exports;var o=n[e]={exports:{},id:e,loaded:!1};return r[e].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=r,t.c=n,t.p="",t(0)}([function(r,t,n){!function(){throw new Error('Cannot find module "./src/index.js"')}()}])}),require("krememberIOS/index.android.js");
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _reactNative = __webpack_require__(2);
+	
+	var _reactNative2 = _interopRequireDefault(_reactNative);
+	
+	var _componentsApp = __webpack_require__(76);
+	
+	var _componentsApp2 = _interopRequireDefault(_componentsApp);
+	
+	_reactNative2['default'].AppRegistry.registerComponent('BabelES6', function () {
+	  return _componentsApp2['default'];
+	});
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2015-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @flow
+	 */
+	'use strict';
+	
+	// Export React, plus some native additions.
+	//
+	// The use of Object.create/assign is to work around a Flow bug (#6560135).
+	// Once that is fixed, change this back to
+	//
+	//   var ReactNative = {...require('React'), /* additions */}
+	//
+	var ReactNative = Object.assign(Object.create(__webpack_require__(3)), {
+	  // Components
+	  ActivityIndicatorIOS: __webpack_require__(4),
+	  ART: __webpack_require__(5),
+	  DatePickerIOS: __webpack_require__(6),
+	  DrawerLayoutAndroid: __webpack_require__(7),
+	  Image: __webpack_require__(8),
+	  ListView: __webpack_require__(9),
+	  MapView: __webpack_require__(10),
+	  Modal: __webpack_require__(11),
+	  Navigator: __webpack_require__(12),
+	  NavigatorIOS: __webpack_require__(13),
+	  PickerIOS: __webpack_require__(14),
+	  ProgressBarAndroid: __webpack_require__(15),
+	  ProgressViewIOS: __webpack_require__(16),
+	  ScrollView: __webpack_require__(17),
+	  SegmentedControlIOS: __webpack_require__(18),
+	  SliderIOS: __webpack_require__(19),
+	  SnapshotViewIOS: __webpack_require__(20),
+	  Switch: __webpack_require__(21),
+	  SwitchAndroid: __webpack_require__(22),
+	  SwitchIOS: __webpack_require__(23),
+	  TabBarIOS: __webpack_require__(24),
+	  Text: __webpack_require__(25),
+	  TextInput: __webpack_require__(26),
+	  ToastAndroid: __webpack_require__(27),
+	  ToolbarAndroid: __webpack_require__(28),
+	  Touchable: __webpack_require__(29),
+	  TouchableHighlight: __webpack_require__(30),
+	  TouchableNativeFeedback: __webpack_require__(31),
+	  TouchableOpacity: __webpack_require__(32),
+	  TouchableWithoutFeedback: __webpack_require__(33),
+	  View: __webpack_require__(34),
+	  ViewPagerAndroid: __webpack_require__(35),
+	  WebView: __webpack_require__(36),
+	
+	  // APIs
+	  ActionSheetIOS: __webpack_require__(37),
+	  AdSupportIOS: __webpack_require__(38),
+	  AlertIOS: __webpack_require__(39),
+	  Animated: __webpack_require__(40),
+	  AppRegistry: __webpack_require__(41),
+	  AppStateIOS: __webpack_require__(42),
+	  AsyncStorage: __webpack_require__(43),
+	  BackAndroid: __webpack_require__(44),
+	  CameraRoll: __webpack_require__(45),
+	  Dimensions: __webpack_require__(46),
+	  Easing: __webpack_require__(47),
+	  ImagePickerIOS: __webpack_require__(48),
+	  InteractionManager: __webpack_require__(49),
+	  LayoutAnimation: __webpack_require__(50),
+	  LinkingIOS: __webpack_require__(51),
+	  NetInfo: __webpack_require__(52),
+	  PanResponder: __webpack_require__(53),
+	  PixelRatio: __webpack_require__(54),
+	  PushNotificationIOS: __webpack_require__(55),
+	  Settings: __webpack_require__(56),
+	  StatusBarIOS: __webpack_require__(57),
+	  StyleSheet: __webpack_require__(58),
+	  VibrationIOS: __webpack_require__(59),
+	
+	  // Plugins
+	  DeviceEventEmitter: __webpack_require__(60),
+	  NativeAppEventEmitter: __webpack_require__(61),
+	  NativeModules: __webpack_require__(62),
+	  Platform: __webpack_require__(63),
+	  processColor: __webpack_require__(64),
+	  requireNativeComponent: __webpack_require__(65),
+	
+	  // Prop Types
+	  EdgeInsetsPropType: __webpack_require__(66),
+	  PointPropType: __webpack_require__(67),
+	
+	  // See http://facebook.github.io/react/docs/addons.html
+	  addons: {
+	    LinkedStateMixin: __webpack_require__(68),
+	    Perf: undefined,
+	    PureRenderMixin: __webpack_require__(69),
+	    TestModule: __webpack_require__(62).TestModule,
+	    TestUtils: undefined,
+	    batchedUpdates: __webpack_require__(70).batchedUpdates,
+	    cloneWithProps: __webpack_require__(71),
+	    createFragment: __webpack_require__(72).create,
+	    update: __webpack_require__(73),
+	  },
+	});
+	
+	if (__DEV__) {
+	  ReactNative.addons.Perf = __webpack_require__(74);
+	  ReactNative.addons.TestUtils = __webpack_require__(75);
+	}
+	
+	module.exports = ReactNative;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = require("React");
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = require("ActivityIndicatorIOS");
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactNativeART");
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = require("DatePickerIOS");
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports = require("DrawerLayoutAndroid");
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = require("Image");
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = require("ListView");
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = require("MapView");
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	module.exports = require("Modal");
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = require("Navigator");
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = require("NavigatorIOS");
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = require("PickerIOS");
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = require("ProgressBarAndroid");
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = require("ProgressViewIOS");
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = require("ScrollView");
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = require("SegmentedControlIOS");
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = require("SliderIOS");
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = require("SnapshotViewIOS");
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = require("Switch");
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = require("SwitchAndroid");
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	module.exports = require("SwitchIOS");
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = require("TabBarIOS");
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = require("Text");
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	module.exports = require("TextInput");
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+	module.exports = require("ToastAndroid");
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	module.exports = require("ToolbarAndroid");
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	module.exports = require("Touchable");
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	module.exports = require("TouchableHighlight");
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	module.exports = require("TouchableNativeFeedback");
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	module.exports = require("TouchableOpacity");
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	module.exports = require("TouchableWithoutFeedback");
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	module.exports = require("View");
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	module.exports = require("ViewPagerAndroid");
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	module.exports = require("WebView");
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+	module.exports = require("ActionSheetIOS");
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	module.exports = require("AdSupportIOS");
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	module.exports = require("AlertIOS");
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = require("Animated");
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	module.exports = require("AppRegistry");
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	module.exports = require("AppStateIOS");
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	module.exports = require("AsyncStorage");
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	module.exports = require("BackAndroid");
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	module.exports = require("CameraRoll");
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	module.exports = require("Dimensions");
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	module.exports = require("Easing");
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	module.exports = require("ImagePickerIOS");
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	module.exports = require("InteractionManager");
+
+/***/ },
+/* 50 */
+/***/ function(module, exports) {
+
+	module.exports = require("LayoutAnimation");
+
+/***/ },
+/* 51 */
+/***/ function(module, exports) {
+
+	module.exports = require("LinkingIOS");
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	module.exports = require("NetInfo");
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	module.exports = require("PanResponder");
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	module.exports = require("PixelRatio");
+
+/***/ },
+/* 55 */
+/***/ function(module, exports) {
+
+	module.exports = require("PushNotificationIOS");
+
+/***/ },
+/* 56 */
+/***/ function(module, exports) {
+
+	module.exports = require("Settings");
+
+/***/ },
+/* 57 */
+/***/ function(module, exports) {
+
+	module.exports = require("StatusBarIOS");
+
+/***/ },
+/* 58 */
+/***/ function(module, exports) {
+
+	module.exports = require("StyleSheet");
+
+/***/ },
+/* 59 */
+/***/ function(module, exports) {
+
+	module.exports = require("VibrationIOS");
+
+/***/ },
+/* 60 */
+/***/ function(module, exports) {
+
+	module.exports = require("RCTDeviceEventEmitter");
+
+/***/ },
+/* 61 */
+/***/ function(module, exports) {
+
+	module.exports = require("RCTNativeAppEventEmitter");
+
+/***/ },
+/* 62 */
+/***/ function(module, exports) {
+
+	module.exports = require("NativeModules");
+
+/***/ },
+/* 63 */
+/***/ function(module, exports) {
+
+	module.exports = require("Platform");
+
+/***/ },
+/* 64 */
+/***/ function(module, exports) {
+
+	module.exports = require("processColor");
+
+/***/ },
+/* 65 */
+/***/ function(module, exports) {
+
+	module.exports = require("requireNativeComponent");
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	module.exports = require("EdgeInsetsPropType");
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	module.exports = require("PointPropType");
+
+/***/ },
+/* 68 */
+/***/ function(module, exports) {
+
+	module.exports = require("LinkedStateMixin");
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactComponentWithPureRenderMixin");
+
+/***/ },
+/* 70 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactUpdates");
+
+/***/ },
+/* 71 */
+/***/ function(module, exports) {
+
+	module.exports = require("cloneWithProps");
+
+/***/ },
+/* 72 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactFragment");
+
+/***/ },
+/* 73 */
+/***/ function(module, exports) {
+
+	module.exports = require("update");
+
+/***/ },
+/* 74 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactDefaultPerf");
+
+/***/ },
+/* 75 */
+/***/ function(module, exports) {
+
+	module.exports = require("ReactTestUtils");
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _reactNative = __webpack_require__(2);
+	
+	var _reactNative2 = _interopRequireDefault(_reactNative);
+	
+	var _DocIndex = __webpack_require__(77);
+	
+	var _DocIndex2 = _interopRequireDefault(_DocIndex);
+	
+	var Navigator = _reactNative2['default'].Navigator;
+	var View = _reactNative2['default'].View;
+	var Text = _reactNative2['default'].Text;
+	var StyleSheet = _reactNative2['default'].StyleSheet;
+	var TouchableOpacity = _reactNative2['default'].TouchableOpacity;
+	
+	var App = (function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App() {
+	    _classCallCheck(this, App);
+	
+	    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
+	  }
+	
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _reactNative2['default'].createElement(Navigator, {
+	        style: styles.container,
+	        initialRoute: {
+	          component: _DocIndex2['default'],
+	          title: 'React Native Docs'
+	        },
+	        renderScene: function (route, navigator) {
+	          return _reactNative2['default'].createElement(
+	            View,
+	            { style: styles.scene },
+	            _reactNative2['default'].createElement(route.component, _extends({ navigator: navigator }, route.passProps))
+	          );
+	        },
+	        navigationBar: _reactNative2['default'].createElement(Navigator.NavigationBar, {
+	          routeMapper: {
+	            LeftButton: function LeftButton(route, navigator, index, navState) {
+	              return index === 0 ? null : _reactNative2['default'].createElement(
+	                TouchableOpacity,
+	                {
+	                  onPress: function () {
+	                    return navigator.pop();
+	                  },
+	                  style: styles.navBarLeftButton },
+	                _reactNative2['default'].createElement(
+	                  Text,
+	                  { style: [styles.navBarText, styles.navBarButtonText] },
+	                  'Back'
+	                )
+	              );
+	            },
+	            RightButton: function RightButton(route, navigator, index, navState) {
+	              return null;
+	            },
+	            Title: function Title(route, navigator, index, navState) {
+	              return _reactNative2['default'].createElement(
+	                Text,
+	                { style: styles.titleText },
+	                route.title
+	              );
+	            }
+	          }
+	        })
+	      });
+	    }
+	  }]);
+	
+	  return App;
+	})(_reactNative2['default'].Component);
+	
+	exports['default'] = App;
+	
+	var styles = StyleSheet.create({
+	  container: {
+	    flex: 1,
+	    backgroundColor: '#fff'
+	  },
+	  navBarButtonText: {
+	    color: '#5890ff'
+	  },
+	  navBarLeftButton: {
+	    paddingLeft: 10
+	  },
+	  navBarText: {
+	    fontSize: 16,
+	    marginVertical: 10
+	  },
+	  scene: {
+	    paddingTop: 64,
+	    flex: 1
+	  },
+	  titleText: {
+	    fontSize: 16,
+	    textAlign: 'center',
+	    fontWeight: 'bold',
+	    lineHeight: 32
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _reactNative = __webpack_require__(2);
+	
+	var _reactNative2 = _interopRequireDefault(_reactNative);
+	
+	var _DocSection = __webpack_require__(78);
+	
+	var _DocSection2 = _interopRequireDefault(_DocSection);
+	
+	var _dataDocs = __webpack_require__(79);
+	
+	var _dataDocs2 = _interopRequireDefault(_dataDocs);
+	
+	var ListView = _reactNative2['default'].ListView;
+	var PixelRatio = _reactNative2['default'].PixelRatio;
+	var StyleSheet = _reactNative2['default'].StyleSheet;
+	var Text = _reactNative2['default'].Text;
+	var TouchableHighlight = _reactNative2['default'].TouchableHighlight;
+	var View = _reactNative2['default'].View;
+	
+	var DocIndex = (function (_React$Component) {
+	  _inherits(DocIndex, _React$Component);
+	
+	  _createClass(DocIndex, null, [{
+	    key: 'propTypes',
+	    value: {
+	      navigator: _reactNative2['default'].PropTypes.object.isRequired
+	    },
+	    enumerable: true
+	  }]);
+	
+	  function DocIndex(props) {
+	    _classCallCheck(this, DocIndex);
+	
+	    _get(Object.getPrototypeOf(DocIndex.prototype), 'constructor', this).call(this, props);
+	
+	    var sectionIDs = Object.keys(_dataDocs2['default']);
+	    var rowIDs = sectionIDs.map(function (id) {
+	      return _dataDocs2['default'][id].sections.map(function (s) {
+	        return s.id;
+	      });
+	    });
+	    var dataSource = new ListView.DataSource({
+	      rowHasChanged: function rowHasChanged(r1, r2) {
+	        return r1 !== r2;
+	      },
+	      sectionHeaderHasChanged: function sectionHeaderHasChanged(s1, s2) {
+	        return s1 !== s2;
+	      },
+	      getSectionHeaderData: function getSectionHeaderData(docs, sectionID) {
+	        return docs[sectionID];
+	      },
+	      getRowData: function getRowData(docs, sectionID, rowID) {
+	        return docs[sectionID].sections.filter(function (s) {
+	          return s.id === rowID;
+	        })[0];
+	      }
+	    }).cloneWithRowsAndSections(_dataDocs2['default'], sectionIDs, rowIDs);
+	
+	    this.state = { dataSource: dataSource };
+	  }
+	
+	  _createClass(DocIndex, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this = this;
+	
+	      return _reactNative2['default'].createElement(ListView, {
+	        style: styles.container,
+	        dataSource: this.state.dataSource,
+	        renderSectionHeader: function (section) {
+	          return _this.renderSectionHeader(section);
+	        },
+	        renderRow: function (row) {
+	          return _this.renderRow(row);
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'renderSectionHeader',
+	    value: function renderSectionHeader(section) {
+	      return _reactNative2['default'].createElement(
+	        View,
+	        { style: styles.sectionHeader },
+	        _reactNative2['default'].createElement(
+	          Text,
+	          { style: styles.sectionTitle },
+	          section.title
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'renderRow',
+	    value: function renderRow(row) {
+	      var _this2 = this;
+	
+	      return _reactNative2['default'].createElement(
+	        View,
+	        { style: styles.row },
+	        _reactNative2['default'].createElement(
+	          TouchableHighlight,
+	          {
+	            underlayColor: '#f7f7f7',
+	            onPress: function () {
+	              return _this2.selectRow(row);
+	            } },
+	          _reactNative2['default'].createElement(
+	            Text,
+	            { style: styles.rowTitle },
+	            row.title
+	          )
+	        ),
+	        _reactNative2['default'].createElement(View, { style: styles.rowDivider })
+	      );
+	    }
+	  }, {
+	    key: 'selectRow',
+	    value: function selectRow(section) {
+	      this.props.navigator.push({
+	        title: section.title,
+	        component: _DocSection2['default'],
+	        passProps: { section: section }
+	      });
+	    }
+	  }]);
+	
+	  return DocIndex;
+	})(_reactNative2['default'].Component);
+	
+	exports['default'] = DocIndex;
+	
+	var styles = StyleSheet.create({
+	  container: {
+	    flex: 1
+	  },
+	  sectionHeader: {
+	    paddingTop: 6,
+	    paddingBottom: 6,
+	    paddingLeft: 14,
+	    paddingRight: 14,
+	    backgroundColor: '#eee'
+	  },
+	  sectionTitle: {
+	    fontSize: 13,
+	    fontWeight: 'bold',
+	    color: '#333'
+	  },
+	  row: {
+	    position: 'relative'
+	  },
+	  rowTitle: {
+	    padding: 14,
+	    fontSize: 16,
+	    color: '#333'
+	  },
+	  rowDivider: {
+	    position: 'absolute',
+	    left: 0,
+	    right: 0,
+	    bottom: 0,
+	    height: 1 / PixelRatio.get(),
+	    backgroundColor: '#ddd'
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _reactNative = __webpack_require__(2);
+	
+	var _reactNative2 = _interopRequireDefault(_reactNative);
+	
+	var StyleSheet = _reactNative2['default'].StyleSheet;
+	var Text = _reactNative2['default'].Text;
+	var View = _reactNative2['default'].View;
+	var WebView = _reactNative2['default'].WebView;
+	
+	var BASE_URL = 'https://facebook.github.io/react-native/docs/';
+	
+	var DocSection = (function (_React$Component) {
+	  _inherits(DocSection, _React$Component);
+	
+	  function DocSection() {
+	    _classCallCheck(this, DocSection);
+	
+	    _get(Object.getPrototypeOf(DocSection.prototype), 'constructor', this).apply(this, arguments);
+	  }
+	
+	  _createClass(DocSection, [{
+	    key: 'render',
+	    value: function render() {
+	      var url = BASE_URL + this.props.section.id + '.html#content';
+	      return _reactNative2['default'].createElement(
+	        View,
+	        { style: styles.container },
+	        _reactNative2['default'].createElement(WebView, { style: styles.webView, url: url, startInLoadingState: true })
+	      );
+	    }
+	  }], [{
+	    key: 'propTypes',
+	    value: {
+	      section: _reactNative2['default'].PropTypes.object.isRequired
+	    },
+	    enumerable: true
+	  }]);
+	
+	  return DocSection;
+	})(_reactNative2['default'].Component);
+	
+	exports['default'] = DocSection;
+	
+	var styles = StyleSheet.create({
+	  container: {
+	    flex: 1,
+	    backgroundColor: '#f8f8f8'
+	  },
+	  webView: {
+	    flex: 1
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 79 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = {
+	  'quick-start': {
+	    title: 'Quick Start',
+	    sections: [{
+	      id: 'getting-started',
+	      title: 'Getting Started'
+	    }, {
+	      id: 'tutorial',
+	      title: 'Tutorial'
+	    }, {
+	      id: 'videos',
+	      title: 'Videos'
+	    }]
+	  },
+	  'guides': {
+	    title: 'Guides',
+	    sections: [{
+	      id: 'style',
+	      title: 'Style'
+	    }, {
+	      id: 'gesture-responder-system',
+	      title: 'Gesture Responder System'
+	    }, {
+	      id: 'nativemodulesios',
+	      title: 'Native Modules (iOS)'
+	    }, {
+	      id: 'linking-libraries',
+	      title: 'Linking Libraries'
+	    }, {
+	      id: 'debugging',
+	      title: 'Debugging'
+	    }, {
+	      id: 'testing',
+	      title: 'Testing'
+	    }, {
+	      id: 'runningondevice',
+	      title: 'Running On Device'
+	    }, {
+	      id: 'embedded-app',
+	      title: 'Integration with Existing App'
+	    }, {
+	      id: 'javascript-environment',
+	      title: 'JavaScript Environment'
+	    }]
+	  },
+	  'components': {
+	    title: 'Components',
+	    sections: [{
+	      id: 'activityindicatorios',
+	      title: 'ActivityIndicatorIOS'
+	    }, {
+	      id: 'datepickerios',
+	      title: 'DatePickerIOS'
+	    }, {
+	      id: 'image',
+	      title: 'Image'
+	    }, {
+	      id: 'listview',
+	      title: 'ListView'
+	    }, {
+	      id: 'mapview',
+	      title: 'MapView'
+	    }, {
+	      id: 'navigator',
+	      title: 'Navigator'
+	    }, {
+	      id: 'navigatorios',
+	      title: 'NavigatorIOS'
+	    }, {
+	      id: 'pickerios',
+	      title: 'PickerIOS'
+	    }, {
+	      id: 'scrollview',
+	      title: 'ScrollView'
+	    }, {
+	      id: 'sliderios',
+	      title: 'SliderIOS'
+	    }, {
+	      id: 'switchios',
+	      title: 'SwitchIOS'
+	    }, {
+	      id: 'tabbarios',
+	      title: 'TabBarIOS'
+	    }, {
+	      id: 'text',
+	      title: 'Text'
+	    }, {
+	      id: 'textinput',
+	      title: 'TextInput'
+	    }, {
+	      id: 'touchablehighlight',
+	      title: 'TouchableHighlight'
+	    }, {
+	      id: 'touchableopacity',
+	      title: 'TouchableOpacity'
+	    }, {
+	      id: 'touchablewithoutfeedback',
+	      title: 'TouchableWithoutFeedback'
+	    }, {
+	      id: 'view',
+	      title: 'View'
+	    }, {
+	      id: 'webview',
+	      title: 'WebView'
+	    }]
+	  },
+	  'apis': {
+	    title: 'APIs',
+	    sections: [{
+	      id: 'alertios',
+	      title: 'AlertIOS'
+	    }, {
+	      id: 'appregistry',
+	      title: 'AppRegistry'
+	    }, {
+	      id: 'appstateios',
+	      title: 'AppStateIOS'
+	    }, {
+	      id: 'asyncstorage',
+	      title: 'AsyncStorage'
+	    }, {
+	      id: 'cameraroll',
+	      title: 'CameraRoll'
+	    }, {
+	      id: 'interactionmanager',
+	      title: 'InteractionManager'
+	    }, {
+	      id: 'layoutanimation',
+	      title: 'LayoutAnimation'
+	    }, {
+	      id: 'linkingios',
+	      title: 'LinkingIOS'
+	    }, {
+	      id: 'netinfo',
+	      title: 'NetInfo'
+	    }, {
+	      id: 'panresponder',
+	      title: 'PanResponder'
+	    }, {
+	      id: 'pixelratio',
+	      title: 'PixelRatio'
+	    }, {
+	      id: 'pushnotificationios',
+	      title: 'PushNotificationIOS'
+	    }, {
+	      id: 'statusbarios',
+	      title: 'StatusBarIOS'
+	    }, {
+	      id: 'stylesheet',
+	      title: 'StyleSheet'
+	    }, {
+	      id: 'vibrationios',
+	      title: 'VibrationIOS'
+	    }]
+	  },
+	  'polyfills': {
+	    title: 'Polyfills',
+	    sections: [{
+	      id: 'flexbox',
+	      title: 'Flexbox'
+	    }, {
+	      id: 'geolocation',
+	      title: 'Geolocation'
+	    }, {
+	      id: 'network',
+	      title: 'Network'
+	    }, {
+	      id: 'timers',
+	      title: 'Timers'
+	    }]
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ }
+/******/ ]);
+//# sourceMappingURL=/undefined.map?platform=android&dev=false&minify=true

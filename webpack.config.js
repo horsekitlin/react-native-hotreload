@@ -24,7 +24,8 @@ var config = {
         path.resolve(__dirname, 'src'),
         path.resolve(__dirname, 'node_modules/react-native-navbar'),
       ],
-      loader: 'babel',
+
+      loader: 'babel-loader',
       query: {
         stage: 0,
         plugins: []
